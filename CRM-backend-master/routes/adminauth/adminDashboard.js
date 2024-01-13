@@ -216,7 +216,6 @@ router.get("/contact", verify, async (req, res) => {
 });
 
 //DELETE
-
 router.delete("/contact", verify, async (req, res) => {
   try {
     const contact = await Contact.deleteOne({ _id: req.body._id });

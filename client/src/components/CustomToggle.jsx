@@ -6,9 +6,11 @@ import {
 } from "@mui/icons-material";
 import { ThemeContext } from "../context/ThemeContext";
 
+
 const CustomToggle = () => {
   const [darkTheme, setDarkTheme] = useContext(ThemeContext);
-
+  // const [userType,setUserType]=useUserTypeContext();
+  //  console.log(userType,"userType")
   return (
     <React.Fragment>
       <Stack
@@ -23,6 +25,7 @@ const CustomToggle = () => {
           <DarkModeIcon
             onClick={() => {
               setDarkTheme(!darkTheme);
+              //setUserType("admin")
               localStorage.setItem("mockapi-theme", false);
             }}
             style={{ cursor: "pointer" }}

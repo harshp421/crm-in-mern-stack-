@@ -54,7 +54,7 @@ const verificationEmailTemplate = (link) =>
                       <br />
                       <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
   
-                        Easy CRM is happy to have onboard. You are just one step away from exploring its features.
+                        Crish BALA CRM is happy to have onboard. You are just one step away from exploring its features.
   
                       </p>
                     </td>
@@ -103,7 +103,7 @@ const verificationEmailTemplate = (link) =>
                       <p style="color:#455056; font-size:17px;line-height:24px; font-weight:500; margin-bottom:0px;">
                         Regards,
                       </p>
-                      <p style="color:#455056; font-size:17px;line-height:24px; font-weight:500; margin-top:0px;">Easy CRM</p>
+                      <p style="color:#455056; font-size:17px;line-height:24px; font-weight:500; margin-top:0px;">Crish BALA CRM</p>
                     </td>
                   </tr>
                   <tr>

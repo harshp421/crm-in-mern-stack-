@@ -67,7 +67,7 @@ router.post("/", verify, async (req, res) => {
       const mailOptions = {
         from: process.env.EMAIL_ID,
         to: req.body.email,
-        subject: `Your Company Admin has invited You to Join Easy CRM`,
+        subject: `Your Company Admin has invited You to Join Crish BALA CRM`,
         html: inviteUserTemplate(link, req.body.email, req.body.password),
       };
 

@@ -21,15 +21,11 @@ const HomeLayout = ({ children }) => {
         <Toolbar>
           <Typography
             variant="h6"
-            sx={{ flexGrow: 1, fontWeight: 800, textTransform: "uppercase" }}
+            sx={{ flexGrow: 1, fontWeight: 800}}
           >
-            Easy CRM
+            CRISH BALA CRM
           </Typography>
-          <Link href="https://github.com/shelcia/easy-crm" target="_blank">
-            <IconButton color="primary" style={{ cursor: "pointer" }}>
-              <GitHubIcon sx={{ color: darkTheme ? "#fff" : "#000" }} />
-            </IconButton>
-          </Link>
+        
           <Box sx={{ display: "flex" }}>
             <CustomToggle />
           </Box>
@@ -45,21 +41,7 @@ const HomeLayout = ({ children }) => {
       >
         {children}
       </Container>
-      <Grid
-        container
-        component="footer"
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "10vh",
-        }}
-      >
-        Developed by
-        <Link href="https://shelcia-dev.me/" target="_blank" ml={1}>
-          Shelcia
-        </Link>
-      </Grid>
+    
     </React.Fragment>
   );
 };

@@ -29,7 +29,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import CustomToggle from "../../../components/CustomToggle";
 import { primary } from "../../../theme/themeColors";
 
-// import DashboardIcon from '@mui/icons-material/Dashboard';
+// import DashboardIcon from '@mui/icons-material/admin-dashboard';
 
 const Topbar = ({ handleDrawerToggle }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -89,7 +89,7 @@ const Topbar = ({ handleDrawerToggle }) => {
           <MenuOutlined />
         </IconButton>
         <Typography variant="h6" noWrap component="div">
-          Easy CRM
+          Crish BALA CRM
         </Typography>
         <Box sx={{ flexGrow: 1 }} />
         <List sx={{ display: { xs: "none", sm: "flex" } }}>
@@ -135,37 +135,37 @@ export default Topbar;
 export const menuContents = [
   // {
   //   title: "Dashboard",
-  //   link: "/admin_dashboard/dashboard",
+  //   link: "/admin-dashboard/admin-dashboard",
   //   icon: <Dashboard />,
   // },
   {
     title: "Users",
-    link: "/admin_dashboard/users",
+    link: "/admin-dashboard/users",
     icon: <PeopleAlt />,
   },
   {
     title: "Contacts",
-    link: "/admin_dashboard/contacts",
+    link: "/admin-dashboard/contacts",
     icon: <LocalPhoneOutlined />,
   },
   {
     title: "Tickets",
-    link: "/admin_dashboard/tickets",
+    link: "/admin-dashboard/tickets",
     icon: <ConfirmationNumberOutlined />,
   },
   {
     title: "Todos",
-    link: "/admin_dashboard/todos",
+    link: "/admin-dashboard/todos",
     icon: <FactCheckOutlined />,
   },
   {
     title: "Email",
-    link: "/admin_dashboard/emails",
+    link: "/admin-dashboard/emails",
     icon: <EmailOutlined />,
   },
   {
     title: "CDA",
-    link: "/admin_dashboard/cda",
+    link: "/admin-dashboard/cda",
     icon: <SourceOutlined />,
   },
 ];

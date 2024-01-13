@@ -41,6 +41,7 @@ export class ApiCore {
 
     if (options.post) {
       this.post = (model, additionalParam, isAuthorized) => {
+       // console.log(model, additionalParam, isAuthorized,options.url,"pers");
         return apiProvider.post(
           options.url,
           model,

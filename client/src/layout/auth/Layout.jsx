@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   AppBar,
   Box,
@@ -12,30 +12,38 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import GitHubIcon from "@mui/icons-material/GitHub";
 import { ThemeContext } from "../../context/ThemeContext";
 import CustomToggle from "../../components/CustomToggle";
 import TopImg from "../../assets/card-primary copy.png";
+import useGetuserData from "../../Hooks/useGetuserData";
+import { useNavigate } from "react-router-dom";
 
 const AuthLayout = ({ children }) => {
   const [darkTheme] = useContext(ThemeContext);
   const matches = useMediaQuery("(min-width:500px)");
-
+  const navigate=useNavigate();
+    //jypter notebook 
+    const {user}=useGetuserData();
+    
+     useEffect(() => {
+      if(user !== null)
+      {  
+         navigate(`/${user.role}-dashboard`)
+      }
+     }, [])
+     
+   
   return (
     <React.Fragment>
       <AppBar component="nav">
         <Toolbar>
           <Typography
             variant="h6"
-            sx={{ flexGrow: 1, fontWeight: 800, textTransform: "uppercase" }}
+            sx={{ flexGrow: 1, fontWeight: 800 }}
           >
-            Easy CRM
+            CRISH BALA CRM
           </Typography>
-          <Link href="https://github.com/shelcia/easy-crm" target="_blank">
-            <IconButton color="primary" style={{ cursor: "pointer" }}>
-              <GitHubIcon sx={{ color: darkTheme ? "#fff" : "#000" }} />
-            </IconButton>
-          </Link>
+         
           <Box sx={{ display: "flex" }}>
             <CustomToggle />
           </Box>
@@ -58,21 +66,7 @@ const AuthLayout = ({ children }) => {
           </CardContent>
         </Card>
       </Container>
-      <Grid
-        container
-        component="footer"
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "10vh",
-        }}
-      >
-        Developed by
-        <Link href="https://shelcia-dev.me/" target="_blank" ml={1}>
-          Shelcia
-        </Link>
-      </Grid>
+     
     </React.Fragment>
   );
 };

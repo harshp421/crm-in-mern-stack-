@@ -140,7 +140,6 @@ router.put("/lead/:id", async (req, res) => {
 });
 
 //VALIDATION OF USER INPUTS PREREQUISITES
-
 const ContactSchema = Joi.object({
   title: Joi.string().min(3).required(),
   client: Joi.string().min(3).required(),

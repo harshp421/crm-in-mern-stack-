@@ -81,17 +81,20 @@ router.post("/login", async (req, res) => {
       return res.status(400).send({ message: error.details[0].message });
     else {
       //   res.send("success");
-      if (user.type === "admin") {
+      //console.log(user,"user");
+      if (user.role === "admin") {
         const token = jwt.sign(
           { _id: user._id },
-          process.env.ADMIN_TOKEN_SECRET
+          process.env.TOKEN_SECRET
         );
-        res.status(200).header("auth-token", token).send(token);
+        
+        res.status(200).header("auth-token", token).send(user);
       } else {
         res.status(200).json({ message: "Seems like you are not a admin" });
       }
     }
   } catch (error) {
+    
     res.status(400).send(error);
   }
 });

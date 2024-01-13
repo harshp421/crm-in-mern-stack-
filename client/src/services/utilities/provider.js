@@ -98,9 +98,9 @@ const getByParams = async (
 /** @param {string} resource */
 /** @param {object} model */
 const post = async (
-  resource,
+  resource, // main route like auth 
   model,
-  additionalParam = "",
+  additionalParam = "",//if additional peramiter is given 
   isAuthorized = false
 ) => {
   // console.log({ model });

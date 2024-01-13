@@ -26,7 +26,7 @@ const Verification = () => {
   return searchParams.get("status") === "success" ? (
     <section>
       <Alert severity="success">
-        <AlertTitle>First Step Towards Using Easy CRM</AlertTitle>
+        <AlertTitle>First Step Towards Using Crish BALA CRM</AlertTitle>
         {/* eslint-disable-next-line react/no-unescaped-entities */}
         Thank you for signing up! You can now enjoy full access to our CRM's
         features after email verification. We will keep your email address safe

@@ -5,9 +5,9 @@ import { toast } from "react-hot-toast";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { CustomAuthInput } from "../../components/CustomInputs";
-import { apiAuth } from "../../services/models/authModel";
+import { ManagerApi } from "../../service/api/manager/ManagerApi";
 
-const Login = () => {
+const ManagerLogin = () => {
   const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
@@ -29,20 +29,13 @@ const Login = () => {
     },
   });
   const loginUser = (user) => {
-    apiAuth.post(user, "login").then((res) => {
-      if (res.status === "200") {
-         console.log(res.message,"message")
-        
-        // navigate("/verification");
+    
+     ManagerApi.login(user).then((res) => {
+        console.log("here",res);
+      if (res.status === 200) {
+        toast.success("user Login Successfully")
         localStorage.setItem("CRM-user",JSON.stringify(res.message));
-       
-        if (res.message.companyId) {
-          navigate("/admin-dashboard/contacts");
-        } else {
-          navigate("/admin-dashboard/add-company");
-          localStorage.setItem("CRM-companyId", res.message.companyId);
-          localStorage.setItem("CRM-company", res.message.company);
-        }
+        navigate("/admin-dashboard");
       } else if (res.status === "401") {
         localStorage.setItem("CRM-email", user.email);
         navigate("/verification?status=not-verified");
@@ -55,7 +48,7 @@ const Login = () => {
   return (
     <>
       <Typography component="h1" variant="h4">
-        Log In
+       Manager Log In
       </Typography>
       <CustomAuthInput
         name="email"
@@ -89,4 +82,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ManagerLogin;

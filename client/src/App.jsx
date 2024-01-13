@@ -19,6 +19,7 @@ import "aos/dist/aos.css";
 
 import { ThemeContext } from "./context/ThemeContext";
 import { customTheme } from "./theme";
+import { useUserTypeContext } from "./context/UserTyepContext";
 
 const App = () => {
   const allPages = useRoutes(routes);
@@ -52,6 +53,7 @@ const App = () => {
   });
 
   const [darkTheme] = useContext(ThemeContext);
+  
 
   const appTheme = customTheme({
     theme: darkTheme ? "dark" : "light",

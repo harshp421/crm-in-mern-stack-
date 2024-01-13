@@ -20,7 +20,7 @@ const registerSchema = Joi.object({
   password: Joi.string().min(6).required(),
   role: Joi.string().min(2).required(),
   permissions: Joi.array(),
-  cname: Joi.string().required(),
+  //  cname: Joi.string().required(),
 });
 
 const loginSchema = Joi.object({
@@ -75,25 +75,37 @@ router.post("/register", async (req, res) => {
     });
 
     // Create a new company
-    const company = new Company({
-      name: cname,
-      createdBy: user._id,
-    });
+    if(user.role === "employee")
+    {
+      const company = new Company({
+        name: cname,
+        createdBy: user._id,
+      });
+    }
+   
 
-    // Save both user and company concurrently
-    await Promise.all([user.save(), company.save()]);
-
+  
+  if(user.role==="employee")
+  {    
+      // Save both user and company concurrently
+      await Promise.all([user.save(), company.save()]);
     // Update user with company details
     const existingUser = await User.findById(user._id).exec();
     existingUser.set({ company: cname, companyId: company._id });
     await existingUser.save();
+  }
+  else
+  {
+     await user.save(); 
+  }
+    
 
     // Generate \verification link
     const encryptedString = cryptr.encrypt(email);
     const link = `${feLink}email-verification/${encryptedString}`;
 
     // Create a transporter for sending emails
-    const transporter = await nodemailer.createTransport({
+    const transporter = await nodemailer.createTransport({  
       service: "gmail",
       auth: {
         user: process.env.EMAIL_ID,
@@ -105,7 +117,7 @@ router.post("/register", async (req, res) => {
     const mailOptions = {
       from: process.env.EMAIL_ID,
       to: email,
-      subject: `Activation mail for Easy CRM`,
+      subject: `Activation mail for Crish BALA CRM`,
       html: verificationEmailTemplate(link),
     };
 
@@ -231,7 +243,7 @@ router.post("/resend", async (req, res) => {
       const mailOptions = {
         from: process.env.EMAIL_ID,
         to: req.body.email,
-        subject: `Activation mail for Easy CRM`,
+        subject: `Activation mail for Crish BALA CRM`,
         html: verificationEmailTemplate(link),
       };
 
@@ -290,7 +302,7 @@ router.post("/reset-password", async (req, res) => {
     const mailOptions = {
       from: process.env.EMAIL_ID,
       to: req.body.email,
-      subject: `Reset Password for Easy CRM`,
+      subject: `Reset Password for Crish BALA CRM`,
       html: resetPwdTemplate(link),
     };
 

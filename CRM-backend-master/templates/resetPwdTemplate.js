@@ -10,7 +10,7 @@ const resetPwdTemplate = (link) =>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>Easy CRM Reset Password</title>
+    <title>Crish BALA CRM Reset Password</title>
     <style type="text/css">
       a:hover {
         text-decoration: underline !important;
@@ -95,7 +95,7 @@ const resetPwdTemplate = (link) =>
                       <p style="color:#455056; font-size:17px;line-height:24px; font-weight:500; margin-bottom:0px;">
                         Regards,
                       </p>
-                      <p style="color:#455056; font-size:17px;line-height:24px; font-weight:500; margin-top:0px;">Easy CRM</p>
+                      <p style="color:#455056; font-size:17px;line-height:24px; font-weight:500; margin-top:0px;">Crish BALA CRM</p>
                     </td>
                   </tr>
                   <tr>

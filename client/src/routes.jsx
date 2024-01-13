@@ -19,6 +19,9 @@ const Home = Loadable(lazy(() => import("./pages/home/Homepage")));
 
 const Signup = Loadable(lazy(() => import("./pages/auth/Signup")));
 const Login = Loadable(lazy(() => import("./pages/auth/Login")));
+const AdminLogin = Loadable(lazy(() => import("./pages/auth/AdminLogin")));
+const ManagerLogin = Loadable(lazy(() => import("./pages/auth/ManagerLogin")));
+const EmployeeLogin = Loadable(lazy(() => import("./pages/auth/EmployeeLogin")));
 const Verification = Loadable(lazy(() => import("./pages/auth/Verification")));
 const EmailVerify = Loadable(lazy(() => import("./pages/auth/EmailVerify")));
 const ForgetPassword = Loadable(
@@ -31,7 +34,7 @@ const ResetPwd = Loadable(lazy(() => import("./pages/auth/ResetPwd")));
 // );
 
 // ADMIN PAGE
-// const Dashboard = Loadable(lazy(() => import("./pages/admin/dashboard/Dashboard")));
+// const Dashboard = Loadable(lazy(() => import("./pages/admin/admin-dashboard/admin-dashboard")));
 const AddCompany = Loadable(
   lazy(() => import("./pages/admin/company/AddCompany"))
 );
@@ -49,8 +52,10 @@ const Todos = Loadable(lazy(() => import("./pages/admin/todos/Todos")));
 
 const Emails = Loadable(lazy(() => import("./pages/admin/emails/Emails")));
 const CDA = Loadable(lazy(() => import("./pages/admin/cda/CDA")));
+const  Choice = Loadable(lazy(() => import("./pages/auth/Choice")));
 
 const ErrorPage = Loadable(lazy(() => import("./pages/others/ErrorPage")));
+
 
 const routes = [
   {
@@ -61,6 +66,12 @@ const routes = [
       </HomeLayout>
     ),
   },
+{
+  
+    path:"choice",
+    element:<Choice/>,
+  
+},
   {
     path: "",
     element: (
@@ -73,6 +84,18 @@ const routes = [
         path: "signup",
         element: <Signup />,
       },
+      {
+       path:"admin-login",
+       element:<AdminLogin/>
+      },
+      {
+        path:"manager-login",
+        element:<ManagerLogin/>
+       },
+       {
+        path:"employee-login",
+        element:<EmployeeLogin/>
+       },
       {
         path: "login",
         element: <Login />,
@@ -100,7 +123,7 @@ const routes = [
   //   element: <PrivacyPolicy />,
   // },
   {
-    path: "admin_dashboard",
+    path: "admin-dashboard",
     element: <Layout />,
     children: [
       {

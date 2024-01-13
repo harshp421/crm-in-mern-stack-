@@ -11,7 +11,7 @@ const Homepage = () => {
     <Box component="section">
       <Box>
         <Typography variant="h1" component="h1" sx={{ mb: 2 }} align="center">
-          Easy CRM for Your Basic CRM needs
+          CRISH BALA CRM for Your Basic CRM needs
         </Typography>
         <Typography
           variant="subtitle1"
@@ -22,7 +22,7 @@ const Homepage = () => {
           * Under development
         </Typography>
         <Box align="center">
-          <Button variant="contained" onClick={() => navigate("/login")}>
+          <Button variant="contained" onClick={() => navigate("/choice")}>
             Login
           </Button>
           <Button

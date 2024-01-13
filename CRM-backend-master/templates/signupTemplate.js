@@ -10,7 +10,7 @@ const resetPwdTemplate = (link, email, password) =>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>Easy CRM Signup</title>
+    <title>Crish BALA CRM Signup</title>
     <style type="text/css">
       a:hover {
         text-decoration: underline !important;
@@ -46,7 +46,7 @@ const resetPwdTemplate = (link, email, password) =>
                   </tr>
                   <tr>
                     <td style="padding:0 35px;">
-                      <h1 style="color:#2499EF; font-weight:500; margin:0;font-size:32px;font-family:'Poppins',sans-serif; text-align:center;"> Easy CRM Invitation
+                      <h1 style="color:#2499EF; font-weight:500; margin:0;font-size:32px;font-family:'Poppins',sans-serif; text-align:center;"> Crish BALA CRM Invitation
                         <span style="display:block; margin-left:auto; margin-right:auto; margin-top:19px; margin-bottom:30px; border-bottom:1px solid #cecece; width:100px;"></span>
                       </h1>
   
@@ -54,7 +54,7 @@ const resetPwdTemplate = (link, email, password) =>
                       <br />
                       <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
  
-                        You have been invited by your admin to join Easy CRM. 
+                        You have been invited by your admin to join Crish BALA CRM. 
                         <br/>
                           <br/>
                     
@@ -98,7 +98,7 @@ password: ${password}
                       <p style="color:#455056; font-size:17px;line-height:24px; font-weight:500; margin-bottom:0px;">
                         Regards,
                       </p>
-                      <p style="color:#455056; font-size:17px;line-height:24px; font-weight:500; margin-top:0px;">Easy CRM</p>
+                      <p style="color:#455056; font-size:17px;line-height:24px; font-weight:500; margin-top:0px;">Crish BALA CRM</p>
                     </td>
                   </tr>
                   <tr>
