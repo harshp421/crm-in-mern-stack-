@@ -7,6 +7,7 @@ const verify = require("./employeeverify");
 const ServiceRequest = require("../../models/ServiceRequest");
 const Lead = require("../../models/Contacts");
 const Contact = require("../../models/Contacts");
+const Ticket = require("../../models/Ticket");
 
 //SERVICE REQUEST API'S
 
@@ -45,6 +46,42 @@ router.get("/contact", verify, async (req, res) => {
     res.status(200).send(contacts);
   } catch (error) {
     console.log(error);
+  }
+});
+
+//ticket dashboard information 
+router.get('/:employeeId', async (req, res) => {
+  const employeeId = req.params.employeeId;
+
+  try {
+    // Find all tickets assigned to the employee
+    const tickets = await Ticket.find({ assignee: employeeId });
+
+    // Calculate ticket statistics
+    const totalTickets = tickets.length;
+    const openTickets = tickets.filter((ticket) => ticket.status === 'open').length;
+    const inProgressTickets = tickets.filter((ticket) => ticket.status === 'in-progress').length;
+    const closedTickets = tickets.filter((ticket) => ticket.status === 'closed').length;
+    
+    // Find completed tickets and sort them by completion date in descending order
+
+    const completedTickets = tickets
+      .filter((ticket) => ticket.status === 'closed')
+      .sort((a, b) => b.date - a.date);
+
+
+    // Send the ticket statistics as a response
+    res.status(200).json({
+      totalTickets,
+      openTickets,
+      inProgressTickets,
+      closedTickets,
+      tickets,
+      completedTickets  
+    });
+  } catch (error) {
+    console.error('Error fetching ticket information:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 

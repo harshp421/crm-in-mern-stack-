@@ -31,18 +31,22 @@ const EmployeeLogin = () => {
   const loginUser = (user) => {
     
       EmployeeApi.login(user).then((res) => {
-       // console.log("here",res);
+        console.log("here",res);
       if (res.status === 200) {
-        toast.success("user Login Successfully")
-        localStorage.setItem("CRM-user",JSON.stringify(res.message));
-        navigate("/admin-dashboard");
-      } else if (res.status === "401") {
+        toast.success("User Login Successfully")
+        localStorage.setItem("CRM-user",JSON.stringify(res.data));
+        navigate("/employee-dashboard");
+      } else if (res.status === 401) {
         localStorage.setItem("CRM-email", user.email);
         navigate("/verification?status=not-verified");
-      } else {
+      } else if(res.status === 201)
+      {
+        toast.error(res.data.message)
+      }
+      else {
         toast.error(res.message);
       }
-    });
+    })
   };
 
   return (

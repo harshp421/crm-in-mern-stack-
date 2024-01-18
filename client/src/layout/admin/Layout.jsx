@@ -82,6 +82,7 @@ const Layout = (props) => {
           className="main-panel"
         >
           <Toolbar />
+          
           <Outlet />
         </Box>
       </Box>

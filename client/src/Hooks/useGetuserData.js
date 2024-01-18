@@ -17,12 +17,7 @@ const useGetuserData = (key="CRM-user", initialValue = null) => {
   // State to hold the current value
   const [user, setuser] = useState(initial);
 
-  // Function to update the user in localStorage and state
-//   const setuserAndStore = (newuser) => {
-//     setuser(newuser);
-//     localStorage.setItem(key, JSON.stringify(newuser));
-//   };
-
+ 
   
   return { user };
 };

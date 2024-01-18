@@ -13,13 +13,14 @@ export const AdminApi={
              handleError(error)
          }
     },
-    addUser:async(data,additionalParam="",resource)=>{
+    addUser:async(data,resource,additionalParam="")=>{
         try {
+            console.log(data,resource,additionalParam)
             let response;
             if (additionalParam === "") {
-              response = await axios.post(`${resource}`, data);
+              response = await AxiosInstance.post(`${resource}`, data);
             } else {
-              response = await axios.post(
+              response = await AxiosInstance.post(
                 `/${resource}/${additionalParam}`,
                 data,
               );
@@ -28,5 +29,78 @@ export const AdminApi={
           } catch (error) {
             return handleError(error);
           }
+    },
+    showAllEmployee:async()=>{
+ 
+      try
+      {
+        const responce=await AxiosInstance.get("/admindashboard/employee");
+        return responce;
+       }catch(error)
+      {
+        return handleError(error);
+      }
+    },
+    showAllUser:async()=>{
+      try
+      {
+        const responce=await AxiosInstance.get("/admindashboard/users");
+        return responce;
+       }catch(error)
+      {
+        return handleError(error);
+      }
+    },
+
+    getAllTickets:async()=>{
+      try
+      {
+       const response=await AxiosInstance.get(`/tickets`);
+       return handleResponse(response)
+      }catch(error)
+      {  
+          handleError(error)
+      }
+  },
+  getTicketById:async(id)=>{
+    try
+    {
+     const response=await AxiosInstance.get(`/tickets/view/${id}`);
+     return handleResponse(response)
+    }catch(error)
+    {  
+        handleError(error)
     }
+},
+ updateTicket:async(data,id)=>{
+  try
+  {
+   const response=await AxiosInstance.put(`/tickets/${id}`,data);
+   return handleResponse(response)
+  }catch(error)
+  {  
+      handleError(error)
+  }
+ },
+ sendTicketMessage:async(id,values)=>{
+  try
+  {
+   const response=await AxiosInstance.put(`/tickets/${id}/message`,values);
+   return handleResponse(response)
+  }catch(error)
+  {  
+      handleError(error)
+  }
+ }
+,
+getDashBoardData:async()=>{
+  try
+  {
+   const response=await AxiosInstance.get("/admindashboard");
+   return handleResponse(response)
+  }catch(error)
+  {  
+      handleError(error)
+  }
+}
 }

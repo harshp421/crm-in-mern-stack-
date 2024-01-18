@@ -130,7 +130,7 @@ export const CustomSelectField = ({
   handleChange,
   touched,
   errors,
-  labelItms,
+  labelItems,
 }) => {
   return (
     <TextField
@@ -149,7 +149,7 @@ export const CustomSelectField = ({
       {/* <MenuItem value="">
           <em>None</em>
         </MenuItem> */}
-      {labelItms.map((itm) => (
+      {labelItems.map((itm) => (
         <MenuItem value={itm.val} key={itm.val}>
           {itm.label}
         </MenuItem>
@@ -158,77 +158,6 @@ export const CustomSelectField = ({
   );
 };
 
-// export const CustomSelectChipField = ({
-//   name,
-//   label = "",
-//   placeholder,
-//   values,
-//   handleChange,
-//   touched,
-//   errors,
-//   labelItms,
-// }) => {
-//   const handleDelete = (e, value) => {
-//     e.preventDefault();
-//     console.log("clicked delete");
-//   };
-
-//   return (
-//     <FormControl error={Boolean(touched[name] && errors[name])}>
-//       <InputLabel htmlFor="component-outlined">{label}</InputLabel>
-//       <Select
-//         id={`select-${name}-id`}
-//         placeholder={placeholder}
-//         value={values[name]}
-//         onChange={handleChange}
-//         // renderValue={(value) => `⚠️  - ${value}`}
-//         // select
-//         size="small"
-//         name={name}
-//         // helperText={touched[name] && errors[name]}
-//         error={Boolean(touched[name] && errors[name])}
-//         renderValue={(selected) => (
-//           <div>
-//             {selected.map((value) => (
-//               <Chip
-//                 key={value}
-//                 label={value}
-//                 clickable
-//                 deleteIcon={
-//                   <CancelIcon
-//                     onMouseDown={(event) => event.stopPropagation()}
-//                   />
-//                 }
-//                 onDelete={(e) => handleDelete(e, value)}
-//                 onClick={() => console.log("clicked chip")}
-//               />
-//             ))}
-//           </div>
-//         )}
-//       >
-//         {labelItms.map((itm) => (
-//           <MenuItem value={itm.val} key={itm.val}>
-//             {itm.label}
-//           </MenuItem>
-//         ))}
-//       </Select>
-//       <FormHelperText>{touched[name] && errors[name]}</FormHelperText>
-//     </FormControl>
-//   );
-// };
-
-// const names = [
-//   "Humaira Sims",
-//   "Santiago Solis",
-//   "Dawid Floyd",
-//   "Mateo Barlow",
-//   "Samia Navarro",
-//   "Kaden Fields",
-//   "Genevieve Watkins",
-//   "Mariah Hickman",
-//   "Rocco Richardson",
-//   "Harris Glenn",
-// ];
 
 export const CustomSelectChipField = ({
   name,

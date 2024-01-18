@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   AppBar,
   Box,
@@ -12,9 +12,20 @@ import {
 import CustomToggle from "../../components/CustomToggle";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { ThemeContext } from "../../context/ThemeContext";
+import useGetuserData from "../../Hooks/useGetuserData";
+import { useNavigate } from "react-router-dom";
 
 const HomeLayout = ({ children }) => {
   const [darkTheme] = useContext(ThemeContext);
+  const navigate=useNavigate();
+  const {user}=useGetuserData();
+  
+   useEffect(() => {
+    if(user !== null)
+    {  
+       navigate(`/${user.role}-dashboard`)
+    }
+   }, [])
   return (
     <React.Fragment>
       <AppBar component="nav">

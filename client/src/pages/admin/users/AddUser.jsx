@@ -8,10 +8,12 @@ import {
 } from "../../../components/CustomInputs";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { apiUsers } from "../../../services/models/usersModel";
 import toast from "react-hot-toast";
+import { AdminApi } from "../../../service/api/admin/AdminApi";
+import { useNavigate } from "react-router-dom";
 
 const AddUser = () => {
+  const navigate=useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
   const validationSchema = Yup.object().shape({
@@ -27,8 +29,8 @@ const AddUser = () => {
   const initialValues = {
     name: "",
     email: "",
-    role: "non-admin",
-    permissions: ["users-view"],
+    role: "employee",
+    permissions: ["employee-All"],
     password: "",
   };
   const { errors, values, handleChange, handleSubmit, touched } = useFormik({
@@ -41,14 +43,16 @@ const AddUser = () => {
   });
 
   const inviteUser = (values) => {
-    // console.log(values);
-    apiUsers.post({ ...values, company: "nasdaq" }, "", true).then((res) => {
-      if (res.status === "200") {
+    // console.log(values);  apiUsers.post({ ...values}, "", true)
+    AdminApi.addUser({...values},values.role,"register").then((res) => {
+      console.log(res,"responcw");
+      if (res.status === 200) {
         toast.success("User has been invited");
         setIsLoading(false);
+        navigate("//admin-dashboard/users")
       } else {
         // console.log(res);
-        toast.error(res.message);
+        toast.error(res);
         setIsLoading(false);
       }
     });
@@ -102,9 +106,9 @@ const AddUser = () => {
                 handleChange={handleChange}
                 touched={touched}
                 errors={errors}
-                labelItms={[
-                  { val: "admin", label: "Admin" },
-                  { val: "non-admin", label: "Non Admin" },
+                labelItems={[
+                  { val: "manager", label: "Manager" },
+                  { val: "employee", label: "Employee" },
                 ]}
               />
               <CustomTextField
@@ -118,6 +122,17 @@ const AddUser = () => {
                 type="password"
               />
             </Box>
+            <LoadingButton
+                loading={isLoading}
+                loadingIndicator="Loading…"
+                variant="contained"
+                onClick={handleSubmit}
+                sx={{
+                  marginTop:2,
+                }}
+              >
+                Invite User
+              </LoadingButton>
           </Grid>
           <Grid item xs={12} sm={6} md={6}>
             <Box
@@ -129,7 +144,7 @@ const AddUser = () => {
                 // marginTop: 5,
               }}
             >
-              <Typography component={"p"} variant={"h6"}>
+              {/* <Typography component={"p"} variant={"h6"}>
                 Permissions
               </Typography>
               <Grid container spacing={2}>
@@ -173,15 +188,8 @@ const AddUser = () => {
                     setChecked={setCheckedTodos}
                   />
                 </Grid>
-              </Grid>
-              <LoadingButton
-                loading={isLoading}
-                loadingIndicator="Loading…"
-                variant="contained"
-                onClick={handleSubmit}
-              >
-                Invite User
-              </LoadingButton>
+              </Grid> */}
+             
               {/* <Button onClick={handleSubmit} variant="contained">
                 Invite User
               </Button> */}

@@ -17,12 +17,14 @@ const Signup = () => {
       .email("Enter valid email!")
       .required("Email is required !"),
     password: Yup.string().required("Password is required !"),
+    companyName:Yup.string().required("Componey Name is required !"),
   });
 
   const initialValues = {
     name: "",
     email: "",
     password: "",
+    companyName:""
   };
   const { errors, values, handleChange, handleSubmit, touched } = useFormik({
     initialValues,
@@ -33,7 +35,7 @@ const Signup = () => {
   });
 
   const registerUser = (user) => {
-    apiAuth.post({ ...user, role: "admin" }, "register").then((res) => {
+    apiAuth.post({ ...user, role: "user" }, "register").then((res) => {
       if (res.status === "200") {
         navigate("/verification?status=success");
         setIsLoading(false);
@@ -77,6 +79,14 @@ const Signup = () => {
         touched={touched}
         errors={errors}
         type="password"
+      />
+      <CustomAuthInput
+        placeholder="enter company Name"
+        name="companyName"
+        values={values}
+        handleChange={handleChange}
+        touched={touched}
+        errors={errors}
       />
       <LoadingButton
         loading={isLoading}

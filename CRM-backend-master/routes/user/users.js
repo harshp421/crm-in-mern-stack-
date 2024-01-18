@@ -4,7 +4,7 @@ const User = require("../../models/User");
 //VALIDATION OF USER INPUTS PREREQUISITES
 const Joi = require("joi");
 
-const verify = require("./verify");
+
 const inviteUserTemplate = require("../../templates/inviteUserTemplate");
 const feLink = require("../../link");
 const nodemailer = require("nodemailer");
@@ -23,7 +23,7 @@ const registerSchema = Joi.object({
 });
 
 //GET ALL USERS By Company
-router.get("/", verify, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const users = await User.find().exec();
     res.status(200).send({ status: "200", message: users });
@@ -33,7 +33,7 @@ router.get("/", verify, async (req, res) => {
   }
 });
 
-router.post("/", verify, async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     //VALIDATION OF USER INPUTS
     const { error } = await registerSchema.validateAsync(req.body);
@@ -102,5 +102,7 @@ router.post("/", verify, async (req, res) => {
     }
   }
 });
+
+// tickets 
 
 module.exports = router;

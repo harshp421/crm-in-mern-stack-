@@ -1,6 +1,7 @@
 import React from "react";
 import {
   ConfirmationNumberOutlined,
+  Dashboard,
   // Dashboard,
   EmailOutlined,
   FactCheckOutlined,
@@ -25,10 +26,10 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import CustomToggle from "../../../components/CustomToggle";
 import { primary } from "../../../theme/themeColors";
-
+import BadgeIcon from '@mui/icons-material/Badge';
 // import DashboardIcon from '@mui/icons-material/admin-dashboard';
 
 const Topbar = ({ handleDrawerToggle }) => {
@@ -88,9 +89,14 @@ const Topbar = ({ handleDrawerToggle }) => {
         >
           <MenuOutlined />
         </IconButton>
-        <Typography variant="h6" noWrap component="div">
+      
+       <Link to="/admin-dashboard">
+       <Typography variant="h6" noWrap component="div">
           Crish BALA CRM
         </Typography>
+       </Link>
+       
+      
         <Box sx={{ flexGrow: 1 }} />
         <List sx={{ display: { xs: "none", sm: "flex" } }}>
           {menuContents.map((item, index) => (
@@ -135,13 +141,18 @@ export default Topbar;
 export const menuContents = [
   // {
   //   title: "Dashboard",
-  //   link: "/admin-dashboard/admin-dashboard",
+  //   link: "/admin-dashboard",
   //   icon: <Dashboard />,
   // },
   {
     title: "Users",
     link: "/admin-dashboard/users",
     icon: <PeopleAlt />,
+  },
+  {
+    title:"Employee",
+    link:"/admin-dashboard/employee",
+    icon:<BadgeIcon/>
   },
   {
     title: "Contacts",
@@ -153,19 +164,5 @@ export const menuContents = [
     link: "/admin-dashboard/tickets",
     icon: <ConfirmationNumberOutlined />,
   },
-  {
-    title: "Todos",
-    link: "/admin-dashboard/todos",
-    icon: <FactCheckOutlined />,
-  },
-  {
-    title: "Email",
-    link: "/admin-dashboard/emails",
-    icon: <EmailOutlined />,
-  },
-  {
-    title: "CDA",
-    link: "/admin-dashboard/cda",
-    icon: <SourceOutlined />,
-  },
+
 ];

@@ -12,13 +12,19 @@ const ticketSchema = new mongoose.Schema({
     min: 3,
   },
   client: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User", // Reference to the User model
     required: true,
-    min: 3,
-    max: 255,
   },
   status: {
     type: String,
+    required: true,
+    max: 255,
+    min: 2,
+  },
+  category: {
+    type: String
+    ,
     required: true,
     max: 255,
     min: 2,
@@ -29,8 +35,12 @@ const ticketSchema = new mongoose.Schema({
     max: 255,
     min: 2,
   },
-  assignee: {
+  assignee: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "User" }]
+  ,
+  conversation: {
     type: Array,
+    default: [] // You can initialize it with an empty array
   },
   history: {
     type: Array,

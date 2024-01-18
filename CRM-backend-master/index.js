@@ -19,6 +19,7 @@ const employeeRoute = require("./routes/employeeauth/employeeauth");
 const adminDashboardRoute = require("./routes/adminauth/adminDashboard");
 const managerDashboardRoute = require("./routes/managerauth/managerDashboard");
 const employeeDashboardRoute = require("./routes/employeeauth/employeeDashboard");
+const ticketRoute = require("./routes/tickets/tickets");
 
 
 //CONNECTION TO DATABASE
@@ -50,12 +51,9 @@ app.use("/api/employee", employeeRoute);
 app.use("/api/admindashboard", adminDashboardRoute);
 app.use("/api/managerdashboard", managerDashboardRoute);
 app.use("/api/employeedashboard", employeeDashboardRoute);
+app.use("/api/tickets",ticketRoute );
 
-app.get("/", (req, res) => {
-  res.send(
-    `<a href="https://github.com/shelcia/CRM-backend">This is a backend app , click to open code</a>`
-  );
-});
+
 app.listen(PORT, () => console.log(`server up and running at  ${PORT}`));
 
 // "start": "nodemon index.js"

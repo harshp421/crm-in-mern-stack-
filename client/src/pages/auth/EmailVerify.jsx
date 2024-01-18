@@ -14,7 +14,7 @@ const EmailVerify = () => {
 
   useEffect(() => {
     apiAuth.put({}, `verification/${id}`).then((res) => {
-      //   console.log(res);
+         console.log(res,"responce");
       if (res.status === "200") {
         setMessage("Verified Sucessfully");
         setTimeout(() => {

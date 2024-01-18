@@ -34,8 +34,8 @@ const ManagerLogin = () => {
         console.log("here",res);
       if (res.status === 200) {
         toast.success("user Login Successfully")
-        localStorage.setItem("CRM-user",JSON.stringify(res.message));
-        navigate("/admin-dashboard");
+        localStorage.setItem("CRM-user",JSON.stringify(res.data));
+        navigate("/manager-dashboard");
       } else if (res.status === "401") {
         localStorage.setItem("CRM-email", user.email);
         navigate("/verification?status=not-verified");

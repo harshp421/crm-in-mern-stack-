@@ -12,6 +12,7 @@ const User = require("../../models/User");
 
 //VALIDATION OF USER INPUTS PREREQUISITES
 const Joi = require("joi");
+const Ticket = require("../../models/Ticket");
 
 const serviceRequestSchema = Joi.object({
   title: Joi.string().min(3).required(),
@@ -240,14 +241,54 @@ router.put("/contact/:id", async (req, res) => {
 });
 
 //USERS
-router.get("/users", verify, async (req, res) => {
+router.get("/employee", verify, async (req, res) => {
   try {
-    const users = await User.find().exec();
+    const users = await User.find({ role: { $in: ['manager', 'employee'] } }).exec();
+    // const users = await User.find().exec();
     res.status(200).send(users);
   } catch (error) {
     console.log(error);
     res.status(400).send(error);
   }
 });
+
+router.get("/users", verify, async (req, res) => {
+  try {
+    const users = await User.find({ role: { $in: ['user'] } }).exec();
+    res.status(200).send(users);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error);
+  }
+});
+
+router.get("/", async (req, res) => {
+  try {
+    // Get total number of tickets
+    const totalTickets = await Ticket.countDocuments();
+
+    // Get number of pending tickets
+    const pendingTickets = await Ticket.countDocuments({ status: "open" });
+
+    // Get number of closed tickets
+    const closedTickets = await Ticket.countDocuments({ status: "closed" });
+
+    const TicketInWorking=await Ticket.countDocuments({ status: "in-progress" });
+
+    // Additional information or metrics can be added as needed
+
+    res.status(200).json({
+      totalTickets,
+      pendingTickets,
+      closedTickets,
+      TicketInWorking
+      // Add more data if necessary
+    });
+  } catch (error) {
+    console.error("Error fetching dashboard information:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
 
 module.exports = router;

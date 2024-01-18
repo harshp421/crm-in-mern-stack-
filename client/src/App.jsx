@@ -19,7 +19,7 @@ import "aos/dist/aos.css";
 
 import { ThemeContext } from "./context/ThemeContext";
 import { customTheme } from "./theme";
-import { useUserTypeContext } from "./context/UserTyepContext";
+
 
 const App = () => {
   const allPages = useRoutes(routes);

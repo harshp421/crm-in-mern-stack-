@@ -203,9 +203,11 @@ router.post("/login", async (req, res) => {
 });
 
 router.put("/verification/:id", async (req, res) => {
-  // console.log(req.params.id);
+ 
   const decryptedString = cryptr.decrypt(req.params.id);
-  const query = await User.where({ email: decryptedString });
+  console.log(decryptedString,"quesry");
+  const query = await User.where({ _id: decryptedString });
+  
   try {
     if (query.length === 0) {
       res.status(200).send({ status: "400", message: "Invalid String" });

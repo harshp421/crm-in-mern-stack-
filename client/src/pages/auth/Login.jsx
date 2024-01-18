@@ -32,17 +32,10 @@ const Login = () => {
     apiAuth.post(user, "login").then((res) => {
       if (res.status === "200") {
          console.log(res.message,"message")
-        
+         toast.success("user Login Successfully")
         // navigate("/verification");
         localStorage.setItem("CRM-user",JSON.stringify(res.message));
-       
-        if (res.message.companyId) {
-          navigate("/admin-dashboard/contacts");
-        } else {
-          navigate("/admin-dashboard/add-company");
-          localStorage.setItem("CRM-companyId", res.message.companyId);
-          localStorage.setItem("CRM-company", res.message.company);
-        }
+        navigate("/user-dashboard")
       } else if (res.status === "401") {
         localStorage.setItem("CRM-email", user.email);
         navigate("/verification?status=not-verified");

@@ -22,7 +22,6 @@ const AuthLayout = ({ children }) => {
   const [darkTheme] = useContext(ThemeContext);
   const matches = useMediaQuery("(min-width:500px)");
   const navigate=useNavigate();
-    //jypter notebook 
     const {user}=useGetuserData();
     
      useEffect(() => {
