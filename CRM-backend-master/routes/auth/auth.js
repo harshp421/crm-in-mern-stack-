@@ -206,16 +206,16 @@ router.put("/verification/:id", async (req, res) => {
  
   const decryptedString = cryptr.decrypt(req.params.id);
   console.log(decryptedString,"quesry");
-  const query = await User.where({ _id: decryptedString });
-  
+  const query = await User.where({ email: decryptedString });
+  console.log(query,"quesry");
   try {
     if (query.length === 0) {
       res.status(200).send({ status: "400", message: "Invalid String" });
       return;
     }
-    const activate = await User.findById(query[0]._id).exec();
+    const activate = await User.findOne({email:query[0].email}).exec();
     activate.set({ verified: true });
-    // console.log("verified");
+     console.log(activate,"verified");
     await activate.save();
     res.status(200).send({ status: "200", message: "Account Verified !" });
   } catch (error) {

@@ -10,6 +10,7 @@ const feLink = require("../../link");
 const nodemailer = require("nodemailer");
 
 const Cryptr = require("cryptr");
+const Ticket = require("../../models/Ticket");
 const cryptr = new Cryptr("myTotallySecretKey");
 
 // need to be changed
@@ -104,5 +105,36 @@ router.post("/", async (req, res) => {
 });
 
 // tickets 
+router.get('/ticket/:userId', async (req, res) => {
+  const userId = req.params.userId;
 
+  try {
+    // Find all tickets created by the user
+    const tickets = await Ticket.find({ client: userId });
+
+    // Calculate ticket statistics
+    const totalTickets = tickets.length;
+    const openTickets = tickets.filter((ticket) => ticket.status === 'open').length;
+    const inProgressTickets = tickets.filter((ticket) => ticket.status === 'in-progress').length;
+    const closedTickets = tickets.filter((ticket) => ticket.status === 'closed').length;
+
+    // Find completed tickets and sort them by completion date in descending order
+    const completedTickets = tickets
+      .filter((ticket) => ticket.status === 'closed' && ticket.dateCompleted) // Assuming a field dateCompleted for completion date
+      .sort((a, b) => b.dateCompleted - a.dateCompleted);
+
+    // Send the ticket statistics and completed tickets as a response
+    res.status(200).json({
+      totalTickets,
+      openTickets,
+      inProgressTickets,
+      closedTickets,
+      completedTickets,
+      tickets,
+    });
+  } catch (error) {
+    console.error('Error fetching ticket information:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
 module.exports = router;

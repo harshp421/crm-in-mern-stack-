@@ -29,8 +29,8 @@ const AddUser = () => {
   const initialValues = {
     name: "",
     email: "",
-    role: "employee",
-    permissions: ["employee-All"],
+    role: "user",
+    permissions: ["user-All"],
     password: "",
   };
   const { errors, values, handleChange, handleSubmit, touched } = useFormik({
@@ -44,24 +44,21 @@ const AddUser = () => {
 
   const inviteUser = (values) => {
     // console.log(values);  apiUsers.post({ ...values}, "", true)
-    AdminApi.addUser({...values},values.role,"register").then((res) => {
-      console.log(res,"responcw");
+    AdminApi.addUser({...values},"auth","register").then((res) => {
+      console.log(res,"responc");
       if (res.status === 200) {
         toast.success("User has been invited");
         setIsLoading(false);
-        navigate("//admin-dashboard/users")
+        navigate("/admin-dashboard/users")
       } else {
         // console.log(res);
-        toast.error(res);
+        toast.error(res.data?.message);
         setIsLoading(false);
       }
     });
   };
 
-  const [checkedUsers, setCheckedUsers] = useState([true, true, true]);
-  const [checkedContacts, setCheckedContacts] = useState([true, true, true]);
-  const [checkedTickets, setCheckedTickets] = useState([true, true, true]);
-  const [checkedTodos, setCheckedTodos] = useState([true, true, true]);
+
 
   return (
     <Box component="section">
@@ -98,19 +95,7 @@ const AddUser = () => {
                 touched={touched}
                 errors={errors}
               />
-              <CustomSelectField
-                label="Role"
-                name="role"
-                placeholder="role"
-                values={values}
-                handleChange={handleChange}
-                touched={touched}
-                errors={errors}
-                labelItems={[
-                  { val: "manager", label: "Manager" },
-                  { val: "employee", label: "Employee" },
-                ]}
-              />
+             
               <CustomTextField
                 label="password"
                 name="password"

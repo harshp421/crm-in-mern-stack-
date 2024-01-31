@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import AppWidgetSummary from './AppWIdetSummary'
-import { Container, Grid, Typography } from '@mui/material'
+import { Card, CardHeader, Container, Grid, Stack, Typography } from '@mui/material'
 import BarChart from '../../../components/customeChart/PieChart'
 import PieChart from '../../../components/customeChart/PieChart'
 import LineChart from '../../../components/customeChart/LineChart'
 import { AdminApi } from '../../../service/api/admin/AdminApi'
+import { userApi } from '../../../service/api/user/userApi'
+import useGetuserData from '../../../Hooks/useGetuserData'
+import ResentAddadTicket from './component/ResentAddadTicket'
 
 const Dashboard = () => {
     const [dashboardData,setDashboardData]=useState();
+    const user=useGetuserData();
      const fatchDashBoardData=async()=>{
          try
          { 
-              const responce =await AdminApi.getDashBoardData();
+              const responce =await userApi.getDashBoardData(user.user.id);
               console.log(responce,"dasgbard");
               setDashboardData(responce.data)
          }catch(error)
@@ -43,7 +47,7 @@ const Dashboard = () => {
         <Grid item xs={12} sm={6} md={3}>
           <AppWidgetSummary
             title="Tickets in-Process"
-            total={dashboardData?.TicketInWorking}
+            total={dashboardData?.inProgressTickets}
             color="info"
             // icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
           />
@@ -52,7 +56,7 @@ const Dashboard = () => {
         <Grid item xs={12} sm={6} md={3}>
           <AppWidgetSummary
             title="Tickets Open"
-            total={dashboardData?.pendingTickets}
+            total={dashboardData?.openTickets}
             color="warning"
             // icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
           />
@@ -74,6 +78,27 @@ const Dashboard = () => {
         <Grid item  xs={12} md={6} lg={4}>
         <PieChart/>
         </Grid>
+        </Grid>
+
+        <Grid item xs={12} md={12} lg={12}>
+          <Card
+            component={Stack}
+            spacing={3}
+            sx={{
+              px: 3,
+              py: 5,
+              my: 3,
+              borderRadius: 2,
+            }}
+          >
+            <CardHeader title="Resently Addad Ticket" sx={{ mb: 5 }} />
+          
+           <ResentAddadTicket
+              title="Tickets"
+              downloadName="Tickets"
+              Data={dashboardData?.tickets}
+              />
+          </Card>
         </Grid>
 
         </Container>

@@ -261,6 +261,46 @@ router.get("/users", verify, async (req, res) => {
     res.status(400).send(error);
   }
 });
+//getsingle user 
+router.get("/user/:userId", verify, async (req, res) => {
+  try {
+    
+    // Fetch user details by ID
+    const user = await User.findById(req.params.userId).exec();
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Error fetching user details by ID:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+// update user 
+// PUT USER BY ID API
+router.put("/user/:userId", verify, async (req, res) => {
+  try {
+    // Fetch user details by ID
+    const user = await User.findById(req.params.userId).exec();
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Update user details
+    user.set(req.body);
+    const result = await user.save();
+
+   
+
+    res.status(200).json(result);
+  } catch (error) {
+    console.error('Error updating user details by ID:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 router.get("/", async (req, res) => {
   try {

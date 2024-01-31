@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CustomTable from "../../../components/CustomTable";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import { Add as AddIcon } from "@mui/icons-material";
 import { userApi } from "../../../service/api/user/userApi";
@@ -12,8 +12,7 @@ const Tickets = () => {
   const [loading, setLoading] = useState(true);
   
   const user=useGetuserData(); 
-
-
+  const navigate=useNavigate();
 
   useEffect(() => {
     const fetchTickets = async () => {
@@ -162,6 +161,24 @@ const Tickets = () => {
       options: {
         customBodyRender: (data) => (
           <span>{convertDateToDateWithoutTime(data)}</span>
+        ),
+      },
+    },
+    {
+      name: "_id",
+      label: "Actions",
+      options: {
+        customBodyRender: (tableMeta) => (
+          <Button
+            variant="contained"
+            size="small"
+            onClick={() => {
+              navigate(`/user-dashboard/tickets/${tableMeta}`)
+            }}
+          >
+            View
+          </Button>
+         
         ),
       },
     },

@@ -30,6 +30,7 @@ export const AdminApi={
             return handleError(error);
           }
     },
+  
     showAllEmployee:async()=>{
  
       try
@@ -41,6 +42,15 @@ export const AdminApi={
         return handleError(error);
       }
     },
+    updateUser: async (userId, data) => {
+      try {
+        const response = await AxiosInstance.put(`/user/${userId}`, data);
+        return handleResponse(response);
+      } catch (error) {
+        return handleError(error);
+      }
+    },
+  
     showAllUser:async()=>{
       try
       {
@@ -51,7 +61,15 @@ export const AdminApi={
         return handleError(error);
       }
     },
-
+    getUserById: async (userId) => {
+      try {
+        const response = await AxiosInstance.get(`/admindashboard/user/${userId}`);
+        return handleResponse(response);
+      } catch (error) {
+        return handleError(error);
+      }
+    },
+   
     getAllTickets:async()=>{
       try
       {

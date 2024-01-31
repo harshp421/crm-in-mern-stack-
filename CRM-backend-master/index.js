@@ -14,10 +14,10 @@ const contactsRoute = require("./routes/contacts/contacts");
 const usersRoute = require("./routes/user/users");
 const companyRoute = require("./routes/company/company");
 const adminRoute = require("./routes/adminauth/adminauth");
-const managerRoute = require("./routes/managerauth/managerauth");
+
 const employeeRoute = require("./routes/employeeauth/employeeauth");
 const adminDashboardRoute = require("./routes/adminauth/adminDashboard");
-const managerDashboardRoute = require("./routes/managerauth/managerDashboard");
+
 const employeeDashboardRoute = require("./routes/employeeauth/employeeDashboard");
 const ticketRoute = require("./routes/tickets/tickets");
 
@@ -46,10 +46,8 @@ app.use("/api/contacts", contactsRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/company", companyRoute);
 app.use("/api/admin", adminRoute);
-app.use("/api/manager", managerRoute);
 app.use("/api/employee", employeeRoute);
 app.use("/api/admindashboard", adminDashboardRoute);
-app.use("/api/managerdashboard", managerDashboardRoute);
 app.use("/api/employeedashboard", employeeDashboardRoute);
 app.use("/api/tickets",ticketRoute );
 

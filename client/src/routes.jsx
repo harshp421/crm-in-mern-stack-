@@ -60,10 +60,7 @@ const Contacts = Loadable(
 //admin component route
 const Tickets = Loadable(lazy(() => import("./pages/admin/tickets/Tickets")));
 const ViewTicket = Loadable(lazy(() => import("./pages/admin/tickets/ViewTicket")));
-const Projects = Loadable(lazy(() => import("./pages/admin/todos/Projects")));
-const Todos = Loadable(lazy(() => import("./pages/admin/todos/Todos")));
-const Emails = Loadable(lazy(() => import("./pages/admin/emails/Emails")));
-const CDA = Loadable(lazy(() => import("./pages/admin/cda/CDA")));
+
 const  Choice = Loadable(lazy(() => import("./pages/auth/Choice")));
 const ErrorPage = Loadable(lazy(() => import("./pages/others/ErrorPage")));
 
@@ -71,15 +68,14 @@ const ErrorPage = Loadable(lazy(() => import("./pages/others/ErrorPage")));
 //employee dashboard component
 const EmployeeTickets = Loadable(lazy(() => import("./pages/employee/tickets/Tickets")));
 const ViewEmployeeTicket = Loadable(lazy(() => import("./pages/employee/tickets/ViewTicket")));
-const EmployeeProjects = Loadable(lazy(() => import("./pages/employee/todos/Projects")));
-const EmployeeTodos = Loadable(lazy(() => import("./pages/employee/todos/Todos")));
+
 
 
 
 //user deshboard component
 const UserTickets = Loadable(lazy(() => import("./pages/users/tickets/Tickets")));
 const UserAddTickets=Loadable(lazy(() => import("./pages/users/tickets/AddTickets")));
-
+const ViewUserTicket = Loadable(lazy(() => import("./pages/users/tickets/ViewTicket")));
 
 const routes = [
   {
@@ -168,11 +164,20 @@ const routes = [
         element: <AddUser />,
       },
       {
+        path: "users/view-user/:id",
+        element: <AddUser />,
+      },
+
+      {
         path:"employee",
         element:<Employee/>
       },
       {
         path:"employee/add-user",
+        element:<AddEmployee/>
+      },
+      {
+        path:"employee/view-user/:id",
         element:<AddEmployee/>
       },
       {
@@ -191,22 +196,8 @@ const routes = [
         path: "tickets/:id",
         element: <ViewTicket />,
       },
-      {
-        path: "todos",
-        element: <Projects />,
-      },
-      {
-        path: "todos/:id",
-        element: <Todos />,
-      },
-      {
-        path: "emails",
-        element: <Emails />,
-      },
-      {
-        path: "cda",
-        element: <CDA />,
-      },
+      
+     
     ],
   },
   {
@@ -226,14 +217,7 @@ const routes = [
         element: <ViewEmployeeTicket />,
       },
       
-      {
-        path: "todos",
-        element: <EmployeeProjects />,
-      },
-      {
-        path: "todos/:id",
-        element: <EmployeeTodos />,
-      },
+     
 
     ],
   },
@@ -253,7 +237,10 @@ const routes = [
         path: "tickets/add-tickets",
         element: <UserAddTickets />,
       },
-      
+      {
+        path: "tickets/:id",
+        element: <ViewUserTicket />,
+      },
     ],
   },
   {

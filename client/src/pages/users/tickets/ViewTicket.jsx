@@ -17,7 +17,6 @@ import {
   ListItemAvatar,
   Avatar,
   Badge,
-  IconButton,
 } from "@mui/material";
 import { AdminApi } from "../../../service/api/admin/AdminApi";
 import { LoadingButton } from "@mui/lab";
@@ -27,6 +26,7 @@ import { CustomTextField } from "../../../components/CustomInputs";
 import * as Yup from "yup";
 import { Formik, useFormik } from "formik";
 import { EmployeeApi } from "../../../service/api/employee/EmployeeApi";
+import { userApi } from "../../../service/api/user/userApi";
 const validationSchema = Yup.object().shape({
   message: Yup.string().required("Message is required!"),
 });
@@ -40,9 +40,9 @@ const ViewTicket = () => {
   const user = useGetuserData();
   const initialValues = {
     message: "",
-    senderId: user.user.id,
+    senderId: user.user._id,
     senderName: user.user.name,
-    role:"employee"
+    role:"user"
   };
 
   const { errors, values, handleChange, handleSubmit, touched,resetForm } = useFormik({
@@ -58,7 +58,7 @@ const ViewTicket = () => {
 
   const fetchTicket = async () => {
     try {
-      const response = await EmployeeApi.getTicketById(id);
+      const response = await userApi.getTicketById(id);
       setTicket(response.data.message[0]);
       setStatus(response.data.message[0].status);
       setConversation(response.data.message[0].conversation);
@@ -79,7 +79,7 @@ const ViewTicket = () => {
     }
     // After updating, you might want to refresh the ticket details
     try {
-      const response = await EmployeeApi.updateTicket({ status }, id);
+      const response = await userApi.updateTicket({ status }, id);
       console.log(response, "res");
       toast.success(response.data.message);
       setTicket(response.data.ticket);
@@ -91,7 +91,7 @@ const ViewTicket = () => {
   const handleSendMessage = async (values) => {
     try {
       // Your API call to send a new message
-     const response= await EmployeeApi.sendTicketMessage(id, values);
+     const response= await userApi.sendTicketMessage(id, values);
       toast.success(response.data.message);
       setTicket(response.data.ticket);
       setConversation(response.data.ticket.conversation);
@@ -150,13 +150,7 @@ const ViewTicket = () => {
         </Typography>
         <List>
           {conversation.map((message) => (
-            <ListItem key={message.id} 
-            secondaryAction={
-              <IconButton aria-label={message?.role}>
-               {message?.role}
-              </IconButton>
-            }
-            >
+            <ListItem key={message.id}>
               <ListItemAvatar>
                 <Avatar>{message.senderName.charAt(0)}</Avatar>
               </ListItemAvatar>

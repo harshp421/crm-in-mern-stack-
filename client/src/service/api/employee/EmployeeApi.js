@@ -62,5 +62,15 @@ export const EmployeeApi={
     {  
         handleError(error)
     }
-  }
+  },
+  sendTicketMessage:async(id,values)=>{
+    try
+    {
+     const response=await AxiosInstance.put(`/tickets/${id}/message`,values);
+     return handleResponse(response)
+    }catch(error)
+    {  
+        handleError(error)
+    }
+   }
 }

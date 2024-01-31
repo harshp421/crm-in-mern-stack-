@@ -101,7 +101,7 @@ router.get("/:clientId", async (req, res) => {
 
   router.put('/:id/message', async (req, res) => {
     const { id } = req.params;
-    const { message, senderId, senderName } = req.body;
+    const { message, senderId, senderName ,role} = req.body;
   
     try {
       // Fetch the ticket by ID
@@ -112,7 +112,7 @@ router.get("/:clientId", async (req, res) => {
       }
   
       // Add the new message to the conversation array
-      ticket.conversation.push({ message, senderId, senderName });
+      ticket.conversation.push({ message, senderId, senderName,role });
   
       // Save the updated ticket
       const updatedTicket = await ticket.save();

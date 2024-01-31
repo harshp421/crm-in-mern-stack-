@@ -134,7 +134,7 @@ router.post("/login", async (req, res) => {
       if (user.role === "employee") {
         const token = jwt.sign(
           { _id: user._id },
-          process.env.EMPLOYEE_TOKEN_SECRET
+          process.env.TOKEN_SECRET
         );
 
         res.header("auth-token", token).send( {

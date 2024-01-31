@@ -25,7 +25,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import CustomToggle from "../../../components/CustomToggle";
 import { primary } from "../../../theme/themeColors";
 
@@ -59,8 +59,11 @@ const Topbar = ({ handleDrawerToggle }) => {
       onClose={handleClose}
     >
       <MenuItem onClick={handleClose}>
-        <CustomToggle />
+        <ListItemIcon>
+          <CustomToggle />
+        </ListItemIcon>
       </MenuItem>
+
       <MenuItem onClick={handleClose}>
         <ListItemIcon>
           <PersonOutlineOutlined />
@@ -88,9 +91,11 @@ const Topbar = ({ handleDrawerToggle }) => {
         >
           <MenuOutlined />
         </IconButton>
-        <Typography variant="h6" noWrap component="div">
-          Crish BALA CRM
-        </Typography>
+        <Link to="/user-dashboard">
+          <Typography variant="h6" noWrap component="div">
+            Crish BALA CRM
+          </Typography>
+        </Link>
         <Box sx={{ flexGrow: 1 }} />
         <List sx={{ display: { xs: "none", sm: "flex" } }}>
           {menuContents.map((item, index) => (
@@ -138,11 +143,10 @@ export const menuContents = [
   //   link: "/admin-dashboard/admin-dashboard",
   //   icon: <Dashboard />,
   // },
-  
+
   {
     title: "Tickets",
     link: "/user-dashboard/tickets",
     icon: <ConfirmationNumberOutlined />,
   },
- 
 ];

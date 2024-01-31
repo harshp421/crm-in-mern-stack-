@@ -25,9 +25,9 @@ export function handleResponse(response) {
   
   export function handleError(error) {
     console.log(error,"error");
-    // if (error?.response?.data) {
-    //   return error?.response?.data;
-    // }
+    if (error?.response) {
+      return error?.response;
+    }
     return error;
   }
   

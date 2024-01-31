@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   ConfirmationNumberOutlined,
   Dashboard,
@@ -30,11 +30,13 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import CustomToggle from "../../../components/CustomToggle";
 import { primary } from "../../../theme/themeColors";
 import BadgeIcon from '@mui/icons-material/Badge';
+import { ThemeContext } from "../../../context/ThemeContext";
 // import DashboardIcon from '@mui/icons-material/admin-dashboard';
 
 const Topbar = ({ handleDrawerToggle }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const [darkTheme] = useContext(ThemeContext);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -153,11 +155,6 @@ export const menuContents = [
     title:"Employee",
     link:"/admin-dashboard/employee",
     icon:<BadgeIcon/>
-  },
-  {
-    title: "Contacts",
-    link: "/admin-dashboard/contacts",
-    icon: <LocalPhoneOutlined />,
   },
   {
     title: "Tickets",
