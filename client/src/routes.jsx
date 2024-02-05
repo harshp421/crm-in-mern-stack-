@@ -8,6 +8,7 @@ import { Outlet } from "react-router-dom";
 
 import EmployeeLayout from "./layout/employee/EmployeeLayout";
 import UserLayout from "./layout/user/Layout";
+import ProfilePage from "./pages/home/ProfilePage";
 // import AddCompany from "./pages/admin/company/AddCompany";
 
 const Loadable = (Component) => (props) =>
@@ -84,6 +85,14 @@ const routes = [
       <HomeLayout>
         <Home />
       </HomeLayout>
+    ),
+  },
+  {
+    path: "/profile-page",
+    element: (
+     
+        <ProfilePage />
+     
     ),
   },
 {

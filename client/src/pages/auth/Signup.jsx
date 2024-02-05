@@ -17,14 +17,14 @@ const Signup = () => {
       .email("Enter valid email!")
       .required("Email is required !"),
     password: Yup.string().required("Password is required !"),
-    companyName:Yup.string().required("Componey Name is required !"),
+   
   });
 
   const initialValues = {
     name: "",
     email: "",
     password: "",
-    companyName:""
+   
   };
   const { errors, values, handleChange, handleSubmit, touched } = useFormik({
     initialValues,
@@ -80,14 +80,6 @@ const Signup = () => {
         errors={errors}
         type="password"
       />
-      <CustomAuthInput
-        placeholder="enter company Name"
-        name="companyName"
-        values={values}
-        handleChange={handleChange}
-        touched={touched}
-        errors={errors}
-      />
       <LoadingButton
         loading={isLoading}
         loadingIndicator="Loading…"
@@ -96,7 +88,7 @@ const Signup = () => {
         fullWidth
         className="mt-3"
       >
-        Fetch data
+        Sign-Up
       </LoadingButton>
       {/* <Button
         variant="contained"
