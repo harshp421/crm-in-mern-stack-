@@ -61,14 +61,16 @@ const Topbar = ({ handleDrawerToggle }) => {
       open={open}
       onClose={handleClose}
     >
-      <MenuItem onClick={handleClose}>
+      <MenuItem >
         <CustomToggle />
       </MenuItem>
-      <MenuItem onClick={handleClose}>
+      <MenuItem >
+    
         <ListItemIcon>
           <PersonOutlineOutlined />
         </ListItemIcon>
-        <Typography variant="inherit">Profile</Typography>
+        <Link to={'/profile-page'}> <Typography variant="inherit">Profile</Typography>
+         </Link> 
       </MenuItem>
       <MenuItem onClick={logout}>
         <ListItemIcon>

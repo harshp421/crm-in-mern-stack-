@@ -13,14 +13,7 @@ const Homepage = () => {
         <Typography variant="h1" component="h1" sx={{ mb: 2 }} align="center">
           CRISH BALA CRM for Your Basic CRM needs
         </Typography>
-        <Typography
-          variant="subtitle1"
-          component="p"
-          sx={{ mb: 2, color: red[500] }}
-          align="center"
-        >
-          * Under development
-        </Typography>
+       
         <Box align="center">
           <Button variant="contained" onClick={() => navigate("/choice")}>
             Login

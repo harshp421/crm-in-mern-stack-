@@ -31,13 +31,8 @@ const loginSchema = Joi.object({
 //SIGNUP USER
 router.post("/register", async (req, res) => {
   try {
-    const { cname, email, password, role, type } = req.body;
+    const {  email, password, role, type } = req.body;
     
-    // Check if company name already exists
-    const companyExist = await Company.findOne({ name: cname });
-    if (companyExist) {
-      return handleError(res, 400, "Company already exists");
-    }
 
     // Check if email already exists
     const emailExist = await User.findOne({ email });
@@ -74,30 +69,11 @@ router.post("/register", async (req, res) => {
       permissions,
     });
 
-    // Create a new company
-    if(user.role === "employee")
-    {
-      const company = new Company({
-        name: cname,
-        createdBy: user._id,
-      });
-    }
-   
 
-  
-  if(user.role==="employee")
-  {    
-      // Save both user and company concurrently
-      await Promise.all([user.save(), company.save()]);
-    // Update user with company details
-    const existingUser = await User.findById(user._id).exec();
-    existingUser.set({ company: cname, companyId: company._id });
-    await existingUser.save();
-  }
-  else
-  {
+     
+ 
      await user.save(); 
-  }
+  
     
 
     // Generate \verification link
